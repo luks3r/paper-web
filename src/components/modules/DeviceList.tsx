@@ -4,6 +4,7 @@ import { Pencil, Trash2 } from "lucide-react";
 import { createColumnHelper, type ColumnDef } from "@tanstack/react-table";
 import { DeviceService, type Device } from "@/services";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 const columnHelper = createColumnHelper<Device>();
 
@@ -31,14 +32,14 @@ export const deviceColumns: ColumnDef<Device, any>[] = [
       return (
         <div className="flex justify-end items-center gap-2">
           <Button variant="outline" asChild>
-            <a href={`/devices/add?deviceId=${info.row.getValue("id")}`}>
+            <Link href={`/devices/add?deviceId=${info.row.getValue("id")}`}>
               <Pencil className="size-3" />
-            </a>
+            </Link>
           </Button>
           <Button variant="destructive" asChild>
-            <a href={`/devices/delete?deviceId=${info.row.getValue("id")}`}>
+            <Link href={`/devices/delete?deviceId=${info.row.getValue("id")}`}>
               <Trash2 className="size-3" />
-            </a>
+            </Link>
           </Button>
         </div>
       );

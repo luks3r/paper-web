@@ -116,7 +116,7 @@ export const DeviceCreateForm: React.FC<DeviceCreateFormProps> = ({
                 <FormControl>
                   <Input placeholder="My Device Name" {...field} />
                 </FormControl>
-                <FormDescription>Device's unique display name.</FormDescription>
+                <FormDescription>Device&apos;s unique display name.</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -138,7 +138,7 @@ export const DeviceCreateForm: React.FC<DeviceCreateFormProps> = ({
                   />
                 </FormControl>
                 <FormDescription>
-                  Device's minimum capacity (cm).
+                  Device&apos;s minimum capacity (cm).
                 </FormDescription>
                 <FormMessage />
               </FormItem>
@@ -161,7 +161,7 @@ export const DeviceCreateForm: React.FC<DeviceCreateFormProps> = ({
                   />
                 </FormControl>
                 <FormDescription>
-                  Device's maximum capacity (cm).
+                  Device&apos;s maximum capacity (cm).
                 </FormDescription>
                 <FormMessage />
               </FormItem>
