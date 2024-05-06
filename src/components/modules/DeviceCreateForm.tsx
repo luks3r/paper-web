@@ -17,6 +17,7 @@ import { DeviceService, type Device } from "@/services";
 import { useEffect, useState } from "react";
 
 const formSchema = z.object({
+  id: z.coerce.number().optional(),
   name: z.string(),
   minCapacity: z.coerce.number().positive("Capacity must be positive"),
   maxCapacity: z.coerce.number().positive("Capacity must be positive"),
@@ -85,6 +86,7 @@ export const DeviceCreateForm: React.FC<DeviceCreateFormProps> = ({
     }
 
     const response = await deviceService.create({
+      id: values.id,
       name: values.name,
       minCapacity: values.minCapacity,
       maxCapacity: values.maxCapacity,
@@ -107,6 +109,25 @@ export const DeviceCreateForm: React.FC<DeviceCreateFormProps> = ({
       )}
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+          <FormField
+            control={form.control}
+            name="id"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Device ID</FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder="123456789"
+                    type="number"
+                    disabled={currentDevice !== undefined}
+                    {...field}
+                  />
+                </FormControl>
+                <FormDescription>Device&apos;s unique id.</FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
           <FormField
             control={form.control}
             name="name"

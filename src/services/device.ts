@@ -8,6 +8,7 @@ export interface Device {
 }
 
 export interface DeviceCreate {
+  id?: number;
   name: string;
   minCapacity?: number;
   maxCapacity?: number;
