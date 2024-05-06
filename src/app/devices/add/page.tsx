@@ -1,21 +1,19 @@
 "use client";
 
 import DeviceCreateForm from "@/components/modules/DeviceCreateForm";
-import { useSearchParams } from "next/navigation";
-import { Suspense } from "react";
 
-export default function AddDevice() {
-  const searchParams = useSearchParams()!;
-  const deviceId = searchParams.has("deviceId")
-    ? parseInt(searchParams.get("deviceId")!)
+export default function AddDevice({
+  searchParams,
+}: {
+  searchParams?: {
+    deviceId?: string;
+    returnUrl?: string;
+  };
+}) {
+  const deviceId = searchParams?.deviceId
+    ? parseInt(searchParams?.deviceId)
     : undefined;
-  const returnUrl = searchParams.has("returnUrl")
-    ? searchParams.get("returnUrl")!
-    : "/";
+  const returnUrl = searchParams?.returnUrl || "/";
 
-  return (
-    <Suspense>
-      <DeviceCreateForm returnUrl={returnUrl} deviceID={deviceId} />
-    </Suspense>
-  );
+  return <DeviceCreateForm returnUrl={returnUrl} deviceID={deviceId} />;
 }
