@@ -34,7 +34,7 @@ export class RecordService {
   }
 
   async getAll(limit: number = 10, offset: number = 0): Promise<DataRecord[]> {
-    const response = await fetch(api.devices.getAll());
+    const response = await fetch(RecordService.api.getAll());
     if (!response.ok) {
       return [];
     }

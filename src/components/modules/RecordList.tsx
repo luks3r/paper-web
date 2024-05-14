@@ -40,7 +40,7 @@ export const deviceDataColumns: ColumnDef<DataRecord, any>[] = [
       return (
         <div className="flex justify-end items-center gap-2">
           <Button variant="destructive" asChild>
-            <a href={`/devices/delete?deviceId=${info.row.getValue("id")}`}>
+            <a href={RecordService.api.delete(info.row.getValue("id"))}>
               <Trash2 className="size-3" />
             </a>
           </Button>
