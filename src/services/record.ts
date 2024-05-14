@@ -23,10 +23,10 @@ export interface RecordUpdate {
 }
 
 export class RecordService {
-  private static BASE_API: string = api.records;
+  public static api = api.records;
 
   async getOneById(id: number): Promise<DataRecord | null> {
-    const response = await fetch(`${RecordService.BASE_API}/${id}`);
+    const response = await fetch(RecordService.api.getOne(id));
     if (!response.ok) {
       return null;
     }
@@ -34,7 +34,7 @@ export class RecordService {
   }
 
   async getAll(limit: number = 10, offset: number = 0): Promise<DataRecord[]> {
-    const response = await fetch(RecordService.BASE_API);
+    const response = await fetch(api.devices.getAll());
     if (!response.ok) {
       return [];
     }
@@ -42,7 +42,7 @@ export class RecordService {
   }
 
   async create(device: RecordCreate): Promise<DataRecord | null> {
-    const response = await fetch(RecordService.BASE_API, {
+    const response = await fetch(RecordService.api.create(), {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -56,14 +56,14 @@ export class RecordService {
   }
 
   async delete(id: number): Promise<boolean> {
-    const response = await fetch(`${RecordService.BASE_API}/${id}`, {
+    const response = await fetch(RecordService.api.delete(id), {
       method: "DELETE",
     });
     return response.ok;
   }
 
   async update(id: number, device: RecordUpdate): Promise<DataRecord | null> {
-    const response = await fetch(`${RecordService.BASE_API}/${id}`, {
+    const response = await fetch(RecordService.api.update(id), {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

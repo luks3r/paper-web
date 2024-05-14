@@ -2,7 +2,7 @@ import DataTable from "@/components/general/DataTable";
 import { Button } from "@/components/ui/button";
 import { Pencil, Trash2 } from "lucide-react";
 import { createColumnHelper, type ColumnDef } from "@tanstack/react-table";
-import { DeviceService, type Device } from "@/services";
+import { DeviceService, RecordService, type Device } from "@/services";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
@@ -37,7 +37,7 @@ export const deviceColumns: ColumnDef<Device, any>[] = [
             </Link>
           </Button>
           <Button variant="destructive" asChild>
-            <Link href={`/devices/delete?deviceId=${info.row.getValue("id")}`}>
+            <Link href={RecordService.api.delete(info.row.getValue("id"))}>
               <Trash2 className="size-3" />
             </Link>
           </Button>
